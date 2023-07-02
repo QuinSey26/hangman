@@ -1,38 +1,199 @@
-.App {
-  text-align: center;
+/* Set the box-sizing property for all elements to border-box */
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Style the body element */
+body {
+  background-color: rgb(250, 124, 7); /* Set the background color */
+  color: #fbfdff; /* Set the text color */
+  font-family: Arial, Helvetica, sans-serif; /* Set the font family */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Set the flex direction to column */
+  align-items: center; /* Align items to the center */
+  height: 80vh; /* Set the height to 80% of the viewport height */
+  margin: 0; /* Remove margin */
+  overflow: hidden; /* Hide overflow */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Style the h1 element */
+h1 {
+  margin: 20px 0 0; /* Set the margin */
+  text-align: center; /* Align text to the center */
+  text-decoration: underline; /* Add underline decoration */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Style the .gameContainer class */
+.gameContainer {
+  padding: 20px 30px; /* Set the padding */
+  position: relative; /* Set the position to relative */
+  margin: auto; /* Center the container horizontally */
+  height: 350px; /* Set the height */
+  width: 450px; /* Set the width */
+  background-color: #fff; /* Set the background color */
+  border-radius: 10px; /* Set the border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
 }
 
-.App-link {
-  color: #61dafb;
+/* Style the .figureContainer class */
+.figureContainer {
+  fill: transparent; /* Set the fill color to transparent */
+  stroke: #2f3640; /* Set the stroke color */
+  stroke-width: 4px; /* Set the stroke width */
+  stroke-linecap: round; /* Set the stroke linecap to round */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style the .figurePart class */
+.figurePart {
+  display: none; /* Hide the figure part */
+}
+
+/* Style the .wrongLettersContainer class */
+.wrongLettersContainer {
+  color: #2f3640; /* Set the text color */
+  position: absolute; /* Set the position to absolute */
+  top: 20px; /* Set the top position */
+  right: 20px; /* Set the right position */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Set the flex direction to column */
+  text-align: right; /* Align text to the right */
+}
+
+/* Style the .wrongLettersContainer p element */
+.wrongLettersContainer p {
+  margin: 0 0 5px; /* Set the margin */
+}
+
+/* Style the .wrongLettersContainer span element */
+.wrongLettersContainer span {
+  font-size: 24px; /* Set the font size */
+}
+
+/* Style the .word class */
+.word {
+  display: flex; /* Use flexbox for layout */
+  color: #2f3640; /* Set the text color */
+  position: absolute; /* Set the position to absolute */
+  bottom: 10px; /* Set the bottom position */
+  left: 50%; /* Set the left position to 50% */
+  transform: translateX(-50%); /* Translate the element horizontally */
+}
+
+/* Style the .letter class */
+.letter {
+  border-bottom: 3px solid #2f3640; /* Add a bottom border */
+  color: #2f3640; /* Set the text color */
+  display: inline-flex; /* Display as inline-flex */
+  font-size: 30px; /* Set the font size */
+  align-items: center; /* Align items to the center */
+  justify-content: center; /* Justify content to the center */
+  margin: 0 3px; /* Set the margin */
+  height: 50px; /* Set the height */
+  width: 20px; /* Set the width */
+}
+
+/* Style the .popupContainer class */
+.popupContainer {
+  background-color: rgba(0,0,0,0.3); /* Set the background color with transparency */
+  position: fixed; /* Set the position to fixed */
+  top: 0; /* Set the top position */
+  bottom: 0; /* Set the bottom position */
+  left: 0; /* Set the left position */
+  right: 0; /* Set the right position */
+  display: none; /* Hide the container */
+  align-items: center; /* Align items to the center */
+  justify-content: center; /* Justify content to the center */
+}
+
+/* Style the .popup class */
+.popup {
+  background: #2f3640; /* Set the background color */
+  color: aliceblue; /* Set the text color */
+  border-radius: 5px; /* Set the border radius */
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  padding: 20px; /* Set the padding */
+  text-align: center; /* Align text to the center */
+}
+
+/* Style the .popup button element */
+.popup button {
+  cursor: pointer; /* Set the cursor to pointer */
+  background-color: #fff; /* Set the background color */
+  color: #2f3640; /* Set the text color */
+  border: 0; /* Remove border */
+  margin-top: 20px; /* Set the margin top */
+  padding: 12px 20px; /* Set the padding */
+  font-size: 16px; /* Set the font size */
+}
+
+/* Style the .popup button when active */
+.popup button:active {
+  transform: scale(0.98); /* Scale down the button */
+}
+
+/* Style the .popup button when focused */
+.popup button:focus {
+  outline: 0; /* Remove outline */
+}
+
+/* Style the .notificationContainer class */
+.notificationContainer {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* Set the background color with transparency */
+  border-radius: 10px 10px 0 0; /* Set the border radius */
+  padding: 15px 20px; /* Set the padding */
+  position: absolute; /* Set the position to absolute */
+  bottom: -50px; /* Set the bottom position */
+  transition: transform 0.3s ease-in-out; /* Add transition effect */
+}
+
+/* Style the .notificationContainer p element */
+.notificationContainer p {
+  margin: 0; /* Remove margin */
+}
+
+/* Style the .notificationContainer when shown */
+.notificationContainer.show {
+  transform: translateY(-50px); /* Translate the container vertically */
+}
+
+/* Style the .popupHelp class */
+.popupHelp {
+  position: absolute; /* Set the position to absolute */
+  top: 50%; /* Set the top position to 50% */
+  left: 50%; /* Set the left position to 50% */
+  transform: translate(-50%, -50%); /* Translate the element to the center */
+  background-color: #fff; /* Set the background color */
+  border: 1px solid #000; /* Set the border */
+  border-radius: 3px; /* Set the border radius */
+  padding: 20px; /* Set the padding */
+  z-index: 9999; /* Set the z-index */
+}
+
+/* Style the .popupHelpContent class */
+.popupHelpContent {
+  max-width: 400px; /* Set the maximum width */
+  color: #2f3640; /* Set the text color */
+}
+
+/* Style the .closeButton class */
+.closeButton {
+  margin-bottom: 10px; /* Set the margin bottom */
+}
+
+/* Style the button element */
+button {
+  margin-left: 300px; /* Set the margin left */
+  margin-top: 20px; /* Set the margin top */
+  padding: 10px 20px; /* Set the padding */
+  background-color: #1179e8; /* Set the background color */
+  color: #fff; /* Set the text color */
+  border-radius: 5px; /* Set the border radius */
+  border: none; /* Remove border */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Set the cursor to pointer */
 }
